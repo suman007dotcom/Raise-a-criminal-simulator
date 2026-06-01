@@ -1,6 +1,3 @@
-
-
-
 QUESTIONS = [
 
     # AGE 1
@@ -1558,31 +1555,3 @@ QUESTIONS = [
     },
 
 ]
-
-
-def apply_effects(current_stats: dict, effects: dict) -> dict:
-    """
-    Apply effects to current_stats and ensure no stat goes below 0.
-
-    Usage: from Question import apply_effects
-    current_stats = apply_effects(current_stats, choice_effects)
-    """
-    for key, val in (effects or {}).items():
-        # only apply numeric effects
-        try:
-            num = float(val)
-        except Exception:
-            continue
-        current = current_stats.get(key, 0)
-        try:
-            new = current + val
-        except Exception:
-            # if val was float-convertible but not same type, coerce
-            new = current + num
-        # enforce minimum of 0
-        if isinstance(new, (int, float)):
-            if new < 0:
-                new = 0
-        current_stats[key] = new
-    return current_stats
-
